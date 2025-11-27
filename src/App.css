@@ -31,13 +31,248 @@
 }
 
 .loginPage {
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f7f8fc 0%, #eef2ff 100%);
+  padding: 40px 16px;
+  /* 전체 배경과 중앙 정렬로 로그인 섹션을 돋보이게 합니다. */
+}
+.loginCard {
+  width: 360px;
+  background: #fff;
+  border: 1px solid #e6e8ef;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(24, 39, 75, 0.08);
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  /* 카드 레이아웃으로 내용 블록을 구분합니다. */
+}
+.loginCard h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 22px;
+  letter-spacing: -0.02em;
 }
 .loginForm {
   display: flex;
   flex-direction: column;
+  gap: 14px;
+}
+.loginForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+  color: #1f2937;
+  /* 라벨과 입력을 세로로 묶어 읽기 쉽게 합니다. */
+}
+.loginForm input {
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid #d5d7df;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.loginForm input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+  /* 포커스 시 입력 박스를 강조합니다. */
+}
+.loginActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+  /* 로그인/회원가입 버튼을 가로로 배치합니다. */
+}
+.loginActions button {
+  flex: 1;
+  height: 44px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.loginActions button:nth-child(2) {
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+}
+.loginActions button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.18);
+}
+
+/* Home page layout */
+.home {
+  padding: 40px 24px 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+.homeHero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  align-items: center;
+  background: linear-gradient(135deg, #f4f7ff 0%, #eef2ff 100%);
+  border: 1px solid #e6e8ef;
+  border-radius: 16px;
+  padding: 28px;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: #64748b;
+  margin: 0 0 6px 0;
+  font-size: 13px;
+}
+.homeHero h1 {
+  margin: 0 0 12px 0;
+  color: #0f172a;
+  font-size: 28px;
+}
+.lede {
+  margin: 0 0 18px 0;
+  color: #475569;
+  line-height: 1.6;
+}
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.btnPrimary,
+.btnGhost {
+  display: inline-flex;
   justify-content: center;
   align-items: center;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  min-width: 140px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+.btnPrimary {
+  color: #fff;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.18);
+}
+.btnGhost {
+  color: #1e293b;
+  border: 1px solid #d5d7df;
+  background: #fff;
+}
+.btnGhost.subtle {
+  min-width: auto;
+}
+.btnPrimary:hover,
+.btnGhost:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(24, 39, 75, 0.12);
+}
+.heroCard {
+  background: #fff;
+  border: 1px solid #e6e8ef;
+  border-radius: 12px;
+  padding: 18px 16px;
+}
+.heroLabel {
+  margin: 0 0 8px 0;
+  font-weight: 700;
+  color: #0f172a;
+}
+.heroCard ol {
+  margin: 0;
+  padding-left: 20px;
+  color: #475569;
+  line-height: 1.5;
+}
+.recentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sectionHeader h2 {
+  margin: 0;
+  color: #0f172a;
+}
+.textLink {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+.recentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+.recentCard {
+  border: 1px solid #e6e8ef;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.thumb {
+  width: 100%;
+  height: 160px;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 썸네일 이미지가 잘리지 않도록 contain */
+}
+.thumbPlaceholder {
+  color: #475569;
+  font-size: 14px;
+}
+.recentBody {
+  padding: 14px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.recentDate {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+}
+.recentBody h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #0f172a;
+}
+.recentComment {
+  margin: 0;
+  color: #475569;
+  line-height: 1.4;
+  max-height: 60px;
+  overflow: hidden;
+}
+.muted {
+  color: #94a3b8;
 }
 .tourContainer {
   display: flex;

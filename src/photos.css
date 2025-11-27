@@ -1,59 +1,127 @@
 /* photos.css */
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.card {
-  width: 250px;
-  height: 460px;
-  margin: 15px;
+.photosPage {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 36px 20px 60px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 24px;
 }
+
+.photoHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.photoHeaderActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  border: 1px solid #e6e8ef;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(24, 39, 75, 0.06);
+}
+
 .cardImage {
   width: 100%;
-  /* height: auto; */
-  height: 250px;
-  object-fit: cover;
+  height: 220px;
+  object-fit: contain; /* 전체 이미지가 잘리지 않도록 contain */
+  background: #e2e8f0; /* 여백은 중립 색상으로 채웁니다 */
 }
+
 .cardContent {
-  padding: 15px;
+  padding: 14px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 18px;
+  color: #0f172a;
 }
 
 .cardText {
-  height: 2.4rem;
-  /* text-overflow: ellipsis; */
+  margin: 0;
+  color: #475569;
+  line-height: 1.4;
+  max-height: 48px;
   overflow: hidden;
 }
+
+.cardDate {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
 .buttons {
   display: flex;
   gap: 8px;
+  padding: 12px 12px 14px;
 }
+
 .editButton,
 .deleteButton {
   flex: 1;
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: 1.1rem;
-  padding: 0;
-  margin: 0;
-  border: 1px solid dodgerblue;
-  background-color: gray;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
   text-decoration: none;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
-@media (max-width: 600px) {
-  .card {
-    width: 100%;
-    min-width: 500px;
-    margin: 10px 0;
+
+.editButton {
+  color: #fff;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  box-shadow: 0 8px 16px rgba(79, 70, 229, 0.16);
+}
+
+.deleteButton {
+  color: #fff;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 8px 16px rgba(220, 38, 38, 0.18);
+  border: none;
+}
+
+.editButton:hover,
+.deleteButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(24, 39, 75, 0.12);
+}
+
+@media (max-width: 700px) {
+  .photoHeader {
+    flex-direction: column;
+    align-items: flex-start;
   }
-}
-@media (max-width: 900px) {
-  .card {
-    width: 48%;
-    margin: 1%;
+
+  .photoHeaderActions {
+    width: 100%;
   }
 }

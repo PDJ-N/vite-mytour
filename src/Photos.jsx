@@ -1,8 +1,6 @@
-// Photos.jsx
 import React, { useState, useEffect } from "react";
 import "./photos.css";
 import app from "./firebaseConfig";
-//import { getStorage, ref } from "firebase/storage";
 import {
   getFirestore,
   collection,
@@ -13,98 +11,100 @@ import {
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import { Link, useNavigate } from "react-router";
 import useLoginStore from "./useLoginStore";
+
 const Photos = () => {
-  const db = getFirestore(app); //파이어스토어 데이터베이스 연결
-  const storage = getStorage(app); //storage(이미지 저장)
+  const db = getFirestore(app);
+  const storage = getStorage(app);
   const navigate = useNavigate();
   const isLogined = useLoginStore((state) => state.isLogined);
-  const [displayList, setDisplayList] = useState([]); //디스플레이할 객체들
-  const [docId, setDocId] = useState(""); //문서 id(여행 에디팅(수정)시 사용
-  const [refreshNeeded, setRefreshNeeded] = useState(0); //db/storage 삭제 후 새로고침용
+
+  const [displayList, setDisplayList] = useState([]);
+  const [docId, setDocId] = useState([]); // 문서 id 배열
+  const [refreshNeeded, setRefreshNeeded] = useState(0);
+
   useEffect(() => {
-    //   getData();
     const getData = async () => {
-      //아래는 콜렉션의 모든 내용을 읽어들이는 구문
-      const querySnapshot = await getDocs(collection(db, "tourMemo")); //콜렉션명:tourMemo
-      setDisplayList([]); //초기화
-      querySnapshot.forEach((doc) => {
-        // doc.data()[실제 저장된 객체] is never undefined for query doc snapshots
-        //doc.data().속성명 을 작성한 템플릿에 맵핑시켜서 완성하면 됨.
-        console.log(doc.id, " => ", doc.data());
-        setDocId((preId) => [...preId, doc.id]);
-        let ob = doc.data(); //저장한 데이터 객체
+      const querySnapshot = await getDocs(collection(db, "tourMemo"));
+      setDisplayList([]);
+      setDocId([]);
+      querySnapshot.forEach((docSnap) => {
+        setDocId((prev) => [...prev, docSnap.id]);
+        const ob = docSnap.data();
         setDisplayList((arr) => [...arr, ob]);
       });
     };
     getData();
-  }, [refreshNeeded]); //delete 후 새로고침
-  const deleteHandle = async (docId, photoURL) => {
-    //이미지 파일의 참조 주소를 얻음
-    const photoImageRef = ref(storage, photoURL); // 이미지 파일 지우기(url인데 정상 동작하는지 확인...)
-    deleteObject(photoImageRef)
-      .then(() => {
-        // File deleted successfully
-        console.log("이미지 지우기가 성공하였습니다.");
-      })
-      .catch((error) => {
-        // Uh-oh, an error occurred!
-        console.log("이미지 지우기에 실패하였습니다.");
-      }); //database에서 제거하기
-    await deleteDoc(doc(db, "tourMemo", docId)); //제거 완료 후 경고창에 보여주기
-    // 3. 상태 변경을 통해 데이터 재로딩을 유발
-    // 숫자를 1 증가시켜서 상태 변경을 보장
-    setRefreshNeeded((prev) => prev + 1);
+  }, [db, refreshNeeded]);
 
-    alert("데이터가 제거되었습니다.");
+  const deleteHandle = async (targetId, photoURL) => {
+    const photoImageRef = ref(storage, photoURL);
+    deleteObject(photoImageRef).catch((error) => {
+      console.log("이미지 삭제 실패", error);
+    });
+    await deleteDoc(doc(db, "tourMemo", targetId));
+    setRefreshNeeded((prev) => prev + 1);
+    alert("기록을 삭제했습니다");
     navigate("/photos");
   };
+
   return (
-    <div>
-      <h1>여기는 추억의 사진들이 전시될 공간. ....</h1>{" "}
-      <h3>
-        firestore db에 존재하는 각 문서의 필드명 :[location, date, comment,
-        photoURL]{" "}
-      </h3>{" "}
+    <div className="photosPage">
+      <header className="photoHeader">
+        <div>
+          <p className="eyebrow">앨범</p>
+          <h1>업로드한 여행 사진을 한눈에</h1>
+          <p className="lede">
+            Firestore와 Storage에 저장된 여행 기록을 카드로 모았습니다. 로그인
+            상태라면 수정/삭제 버튼이 함께 보입니다.
+          </p>
+        </div>
+        <div className="photoHeaderActions">
+          <Link to="/tour" className="btnPrimary">
+            새 추억 추가
+          </Link>
+          <Link to="/" className="btnGhost">
+            홈으로
+          </Link>
+        </div>
+      </header>
+
       <section className="cards">
-        {" "}
-        {displayList.map((item, index) => {
-          return (
-            <div className="card" key={index}>
-              {" "}
-              <img
-                className="cardImage"
-                src={item.photoURL}
-                alt="추억의 사진"
-              />{" "}
-              <div className="cardContent">
-                <h2 className="cardTitle">{item.location}</h2>
-                <p className="cardText">{item.comment}</p>
-                <p className="cardDate">{item.date}</p>{" "}
-              </div>{" "}
-              <div className="buttons">
-                {" "}
-                {/* /editTrip/:docId => 에디팅 Route(파라미터:docId) */}{" "}
-                {isLogined && (
-                  <Link to={"/editTrip/" + docId[index]} className="editButton">
-                    <button type="button">Edit </button>{" "}
-                  </Link>
-                )}{" "}
-                {/* database와 storage 폴더의 내용을 지워야 한다. */}{" "}
-                {isLogined && (
-                  <button
-                    type="button"
-                    className="deleteButton"
-                    onClick={() => deleteHandle(docId[index], item.photoURL)}
-                  >
-                    Delete{" "}
-                  </button>
-                )}{" "}
-              </div>{" "}
+        {displayList.map((item, index) => (
+          <div className="card" key={docId[index] || index}>
+            <img
+              className="cardImage"
+              src={item.photoURL}
+              alt={item.location || "여행 사진"}
+            />
+            <div className="cardContent">
+              <h2 className="cardTitle">{item.location}</h2>
+              <p className="cardText">{item.comment}</p>
+              <p className="cardDate">{item.date}</p>
             </div>
-          );
-        })}{" "}
-      </section>{" "}
+            <div className="buttons">
+              {isLogined && (
+                <Link
+                  to={"/editTrip/" + docId[index]}
+                  className="editButton"
+                >
+                  수정
+                </Link>
+              )}
+              {isLogined && (
+                <button
+                  type="button"
+                  className="deleteButton"
+                  onClick={() => deleteHandle(docId[index], item.photoURL)}
+                >
+                  삭제
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </section>
     </div>
   );
 };
+
 export default Photos;
