@@ -1,33 +1,70 @@
 .App {
   text-align: center;
 }
-.active {
-  color: white;
-  background-color: green;
-}
+
 .header {
   text-align: center;
-  color: navy;
-  position: relative;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 28px auto 6px;
+  background: linear-gradient(135deg, #c7d2fe, #fbcfe8, #a5f3fc);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
 }
+
+.subheader {
+  text-align: center;
+  color: #cbd5f5;
+  margin: 0 auto 22px;
+  font-weight: 600;
+}
+
 .navi {
+  position: sticky;
+  top: 12px;
+  z-index: 5;
+  max-width: 960px;
+  margin: 0 auto 28px;
+  padding: 10px;
   display: flex;
-  font-weight: bold;
-  justify-content: space-around;
+  gap: 12px;
+  font-weight: 700;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-  background-color: gray;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(14px);
 }
+
 .nav-item {
-  padding: 8px 16px;
-  flex: 1;
+  padding: 10px 14px;
+  flex: 1 1 0;
   text-align: center;
   text-decoration: none;
   height: 100%;
+  color: #e2e8f0;
+  border-radius: 12px;
+  transition: transform 0.15s ease, background 0.18s ease, color 0.18s ease,
+    box-shadow 0.18s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .nav-item:hover {
-  background-color: mistyrose;
-  color: black;
+  background: linear-gradient(135deg, #a5b4fc, #fbcfe8);
+  color: #0f172a;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px rgba(124, 58, 237, 0.22);
+}
+
+.active {
+  color: #0f172a !important;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.24),
+    0 0 0 1px rgba(255, 255, 255, 0.26);
 }
 
 .loginPage {
@@ -35,61 +72,70 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f7f8fc 0%, #eef2ff 100%);
-  padding: 40px 16px;
-  /* 전체 배경과 중앙 정렬로 로그인 섹션을 돋보이게 합니다. */
+  background: radial-gradient(circle at 20% 20%, #c7d2fe33 0, transparent 30%),
+    radial-gradient(circle at 80% 0%, #22d3ee22 0, transparent 30%),
+    linear-gradient(135deg, #0b1221, #111827);
+  padding: 56px 16px;
 }
+
 .loginCard {
-  width: 360px;
-  background: #fff;
-  border: 1px solid #e6e8ef;
-  border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(24, 39, 75, 0.08);
-  padding: 28px 26px;
+  width: 380px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  padding: 30px 26px;
   display: flex;
   flex-direction: column;
   gap: 18px;
-  /* 카드 레이아웃으로 내용 블록을 구분합니다. */
 }
+
 .loginCard h2 {
   margin: 0;
-  color: #0f172a;
-  font-size: 22px;
+  color: #e2e8f0;
+  font-size: 23px;
   letter-spacing: -0.02em;
 }
+
 .loginForm {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
+
 .loginForm label {
   display: flex;
   flex-direction: column;
   gap: 6px;
   font-weight: 600;
-  color: #1f2937;
-  /* 라벨과 입력을 세로로 묶어 읽기 쉽게 합니다. */
+  color: #cbd5f5;
 }
+
 .loginForm input {
   height: 44px;
   padding: 0 12px;
-  border: 1px solid #d5d7df;
-  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  border-radius: 12px;
   font-size: 15px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
+
 .loginForm input:focus {
   outline: none;
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-  /* 포커스 시 입력 박스를 강조합니다. */
+  border-color: #a5b4fc;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
 }
+
 .loginActions {
   display: flex;
   gap: 10px;
   margin-top: 6px;
-  /* 로그인/회원가입 버튼을 가로로 배치합니다. */
 }
+
 .loginActions button {
   flex: 1;
   height: 44px;
@@ -98,59 +144,70 @@
   font-weight: 700;
   cursor: pointer;
   color: #fff;
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  background: linear-gradient(135deg, #a5b4fc, #7c3aed);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
 }
+
 .loginActions button:nth-child(2) {
-  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  background: linear-gradient(135deg, #22d3ee, #2563eb);
 }
+
 .loginActions button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.18);
+  box-shadow: 0 12px 20px rgba(79, 70, 229, 0.18);
+  filter: brightness(1.05);
 }
 
 /* Home page layout */
 .home {
-  padding: 40px 24px 64px;
+  padding: 36px 22px 64px;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 42px;
 }
+
 .homeHero {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
   align-items: center;
-  background: linear-gradient(135deg, #f4f7ff 0%, #eef2ff 100%);
-  border: 1px solid #e6e8ef;
-  border-radius: 16px;
-  padding: 28px;
+  background: linear-gradient(145deg, #0f172a 0%, #111827 50%, #0b1221 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
 }
+
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 700;
-  color: #64748b;
+  color: #a5b4fc;
   margin: 0 0 6px 0;
   font-size: 13px;
 }
+
 .homeHero h1 {
   margin: 0 0 12px 0;
-  color: #0f172a;
-  font-size: 28px;
+  color: #e2e8f0;
+  font-size: 30px;
 }
+
 .lede {
   margin: 0 0 18px 0;
-  color: #475569;
+  color: #c7d2fe;
   line-height: 1.6;
 }
+
 .ctaRow {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
+
 .btnPrimary,
 .btnGhost {
   display: inline-flex;
@@ -161,124 +218,488 @@
   font-weight: 700;
   text-decoration: none;
   min-width: 140px;
-  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease,
+    color 0.12s ease;
 }
+
 .btnPrimary {
   color: #fff;
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
-  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.18);
+  background: linear-gradient(135deg, #a5b4fc, #7c3aed);
+  box-shadow: 0 12px 24px rgba(79, 70, 229, 0.26);
 }
+
 .btnGhost {
-  color: #1e293b;
-  border: 1px solid #d5d7df;
-  background: #fff;
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
 }
+
 .btnGhost.subtle {
   min-width: auto;
+  opacity: 0.85;
 }
+
 .btnPrimary:hover,
 .btnGhost:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(24, 39, 75, 0.12);
+  box-shadow: 0 12px 26px rgba(24, 39, 75, 0.24);
 }
+
 .heroCard {
-  background: #fff;
-  border: 1px solid #e6e8ef;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
   padding: 18px 16px;
+  color: #e2e8f0;
 }
+
 .heroLabel {
   margin: 0 0 8px 0;
   font-weight: 700;
-  color: #0f172a;
+  color: #cbd5f5;
 }
+
 .heroCard ol {
   margin: 0;
   padding-left: 20px;
-  color: #475569;
+  color: #c7d2fe;
   line-height: 1.5;
 }
+
 .recentSection {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
+
 .sectionHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .sectionHeader h2 {
   margin: 0;
-  color: #0f172a;
+  color: #e2e8f0;
 }
+
 .textLink {
-  color: #2563eb;
+  color: #a5b4fc;
   text-decoration: none;
   font-weight: 600;
 }
+
 .recentGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 18px;
 }
-.recentCard {
-  border: 1px solid #e6e8ef;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fff;
+
+.recentSingle {
   display: flex;
   flex-direction: column;
+  gap: 12px;
 }
+
+.singleTop {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.mainCard {
+  min-height: 380px;
+}
+
+.thumb.large {
+  height: 240px;
+}
+
+.carouselControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.arrowButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.arrowButton:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.recentCarousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.recentCarousel::-webkit-scrollbar {
+  display: none;
+}
+
+.sliderRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sliderRow input[type="range"] {
+  flex: 1;
+  accent-color: #a5b4fc;
+}
+
+.sliderLabel {
+  font-size: 13px;
+  color: #cbd5f5;
+}
+
+.recentCard {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(12px);
+}
+
 .thumb {
   width: 100%;
   height: 160px;
-  background: #e2e8f0;
+  background: radial-gradient(circle at 20% 20%, #1f2937, #0f172a);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
+
 .thumb img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* 썸네일 이미지가 잘리지 않도록 contain */
+  object-fit: contain;
 }
+
 .thumbPlaceholder {
-  color: #475569;
+  color: #c7d2fe;
   font-size: 14px;
 }
+
 .recentBody {
   padding: 14px 14px 16px;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
+
 .recentDate {
   margin: 0;
   font-size: 12px;
-  color: #64748b;
+  color: #cbd5f5;
 }
+
 .recentBody h3 {
   margin: 0;
   font-size: 18px;
-  color: #0f172a;
+  color: #e2e8f0;
 }
+
 .recentComment {
   margin: 0;
-  color: #475569;
+  color: #c7d2fe;
   line-height: 1.4;
   max-height: 60px;
   overflow: hidden;
 }
+
 .muted {
-  color: #94a3b8;
+  color: #cbd5f5;
 }
+
+.wheelCard {
+  margin: 0 auto;
+  max-width: 480px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+}
+
+.wheelCircle {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 8px solid rgba(255, 255, 255, 0.12);
+  background: radial-gradient(circle at 30% 30%, #a5b4fc44, #0f172a 70%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #e2e8f0;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.wheelCircle.spin {
+  animation: wheelSpin 1.2s ease-out;
+}
+
+@keyframes wheelSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(540deg);
+  }
+}
+
+.wheelLabel.sub {
+  font-size: 18px;
+  color: #cbd5f5;
+}
+
+.wheelButton {
+  width: 100%;
+  justify-content: center;
+}
+
+.wheelResult {
+  margin: 0;
+  color: #cbd5f5;
+  font-weight: 700;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.statCard {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.statLabel {
+  margin: 0 0 6px 0;
+  color: #cbd5f5;
+  font-weight: 600;
+}
+
+.statValue {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #e2e8f0;
+}
+
+.statSub {
+  margin: 4px 0 0 0;
+  color: #a5b4fc;
+  font-weight: 600;
+}
+
+.barList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.barRow {
+  display: grid;
+  grid-template-columns: 90px 1fr 60px;
+  align-items: center;
+  gap: 10px;
+}
+
+.barLabel {
+  color: #cbd5f5;
+  font-weight: 600;
+}
+
+.barTrack {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.barFill {
+  position: absolute;
+  inset: 0;
+  width: 0;
+  background: linear-gradient(135deg, #a5b4fc, #7c3aed);
+  transition: width 0.25s ease;
+}
+
+.barCount {
+  color: #e2e8f0;
+  font-weight: 700;
+}
+
+.tourPage {
+  padding: 48px 18px 72px;
+}
+
+.tourTitle {
+  text-align: center;
+  color: #e2e8f0;
+  margin: 0 0 8px 0;
+}
+
+.tourSubtitle {
+  font-size: 16px;
+  color: #cbd5f5;
+}
+
 .tourContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
-  font-weight: bold;
+  gap: 12px;
+  padding: 28px 24px;
+  max-width: 640px;
+  margin: 32px auto;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  color: #e2e8f0;
+}
+
+.tourField {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tourField label {
+  font-weight: 700;
+  color: #cbd5f5;
+}
+
+.tourContainer input[type="text"],
+.tourContainer input[type="date"],
+.tourContainer textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  font-size: 15px;
+}
+
+.tourContainer input[type="file"] {
+  color: #c7d2fe;
+}
+
+.dropZone {
+  width: 100%;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.04);
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+
+.dropZone.dragging {
+  border-color: #a5b4fc;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.fileInput {
+  width: 100%;
+  color: #cbd5f5;
+  margin-bottom: 8px;
+}
+
+.progressBar {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(135deg, #a5b4fc, #7c3aed);
+  transition: width 0.12s ease;
+}
+
+.progressText {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.tourActions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.tourContainer button,
+.tourContainer input[type="reset"] {
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #a5b4fc, #7c3aed);
+  box-shadow: 0 12px 22px rgba(79, 70, 229, 0.22);
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+    filter 0.12s ease;
+}
+
+.tourContainer button:hover,
+.tourContainer input[type="reset"]:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.ghostBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e2e8f0;
+  box-shadow: none;
 }

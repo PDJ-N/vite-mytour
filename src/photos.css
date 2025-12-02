@@ -1,11 +1,24 @@
 /* photos.css */
 .photosPage {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 36px 20px 60px;
+  padding: 40px 20px 72px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
+}
+
+.photosPage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 20% 30%, #a5b4fc33, transparent 35%),
+    radial-gradient(circle at 80% 10%, #22d3ee26, transparent 35%),
+    radial-gradient(circle at 10% 85%, #fbbf2433, transparent 40%);
+  filter: blur(60px);
+  opacity: 0.8;
 }
 
 .photoHeader {
@@ -13,10 +26,24 @@
   justify-content: space-between;
   gap: 18px;
   align-items: center;
-  padding: 18px 20px;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
+  padding: 22px 24px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
+}
+
+.photoHeader h1 {
+  margin: 4px 0 10px;
+  color: #e2e8f0;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+}
+
+.photoHeader .lede {
+  color: #cbd5f5;
+  margin: 0;
 }
 
 .photoHeaderActions {
@@ -27,58 +54,85 @@
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
 }
 
 .card {
-  border: 1px solid #e6e8ef;
-  border-radius: 12px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: #fff;
-  box-shadow: 0 8px 18px rgba(24, 39, 75, 0.06);
+  background: linear-gradient(145deg, #0f172a, #0b1221);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.35));
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.4);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .cardImage {
   width: 100%;
-  height: 220px;
-  object-fit: contain; /* 전체 이미지가 잘리지 않도록 contain */
-  background: #e2e8f0; /* 여백은 중립 색상으로 채웁니다 */
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: #111827;
+  filter: saturate(1.05);
+  transition: transform 0.2s ease;
+}
+
+.card:hover .cardImage {
+  transform: scale(1.05);
 }
 
 .cardContent {
-  padding: 14px 14px 10px;
+  padding: 16px 16px 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .cardTitle {
   margin: 0;
-  font-size: 18px;
-  color: #0f172a;
+  font-size: 19px;
+  color: #e2e8f0;
+  letter-spacing: -0.01em;
 }
 
 .cardText {
   margin: 0;
-  color: #475569;
-  line-height: 1.4;
-  max-height: 48px;
+  color: #cbd5f5;
+  line-height: 1.45;
+  max-height: 56px;
   overflow: hidden;
 }
 
 .cardDate {
   margin: 0;
   font-size: 12px;
-  color: #64748b;
+  color: #a5b4fc;
 }
 
 .buttons {
   display: flex;
   gap: 8px;
-  padding: 12px 12px 14px;
+  padding: 12px 12px 16px;
 }
 
 .editButton,
@@ -87,32 +141,31 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 42px;
-  border-radius: 10px;
+  height: 44px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
   font-weight: 700;
   text-decoration: none;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+  color: #fff;
 }
 
 .editButton {
-  color: #fff;
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
-  box-shadow: 0 8px 16px rgba(79, 70, 229, 0.16);
+  background: linear-gradient(135deg, #a5b4fc, #7c3aed);
+  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.25);
 }
 
 .deleteButton {
-  color: #fff;
   background: linear-gradient(135deg, #ef4444, #dc2626);
-  box-shadow: 0 8px 16px rgba(220, 38, 38, 0.18);
-  border: none;
+  box-shadow: 0 10px 20px rgba(220, 38, 38, 0.25);
 }
 
 .editButton:hover,
 .deleteButton:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(24, 39, 75, 0.12);
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 700px) {

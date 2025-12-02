@@ -39,10 +39,10 @@ const Photos = () => {
   const deleteHandle = async (targetId, photoURL) => {
     const photoImageRef = ref(storage, photoURL);
     deleteObject(photoImageRef).catch((error) => {
-      console.log("이미지 삭제 실패", error);
+      console.log("이미지를 삭제하지 못했어요", error);
     });
     await deleteDoc(doc(db, "tourMemo", targetId));
-    setRefreshNeeded((prev) => prev + 1);
+    alert("기록을 삭제했습니다");
     alert("기록을 삭제했습니다");
     navigate("/photos");
   };
@@ -52,15 +52,14 @@ const Photos = () => {
       <header className="photoHeader">
         <div>
           <p className="eyebrow">앨범</p>
-          <h1>업로드한 여행 사진을 한눈에</h1>
+          <h1>빛나는 여행 사진을 모은 감성 갤러리</h1>
           <p className="lede">
-            Firestore와 Storage에 저장된 여행 기록을 카드로 모았습니다. 로그인
-            상태라면 수정/삭제 버튼이 함께 보입니다.
+            Firestore와 Storage에 저장된 여행 기록을 카드로 담았어요.
           </p>
         </div>
         <div className="photoHeaderActions">
           <Link to="/tour" className="btnPrimary">
-            새 추억 추가
+            추억 추가하기
           </Link>
           <Link to="/" className="btnGhost">
             홈으로
@@ -77,16 +76,13 @@ const Photos = () => {
               alt={item.location || "여행 사진"}
             />
             <div className="cardContent">
-              <h2 className="cardTitle">{item.location}</h2>
+              <h2 className="cardTitle">{item.location || "제목 없음"}</h2>
               <p className="cardText">{item.comment}</p>
               <p className="cardDate">{item.date}</p>
             </div>
             <div className="buttons">
               {isLogined && (
-                <Link
-                  to={"/editTrip/" + docId[index]}
-                  className="editButton"
-                >
+                <Link to={"/editTrip/" + docId[index]} className="editButton">
                   수정
                 </Link>
               )}
